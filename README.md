@@ -1,8 +1,7 @@
 # 3.2 Repo-Setup-and-Project-Timeline
 
-For the timeline, plan out how and when you will complete your project. You can either work forward from your current progress or backwards from the due date. Keep in mind that the project will be due the morning of class on Wednesday 4/27. You should consider the following when making your timeline:
-
-Coding Overall Functionality
-Making and Implementing Assets/Art
-Debugging and Testing Software
-Additional Features and Finishing Touches
+Timeline:
+4/17 Finish assets + finished design of game + understand how to start coding game + switch function works
+4/20 Code works completely as intended (start up/game functionality/end screen)
+4/24 All features/assets done
+4/26 Final touches (if any)
