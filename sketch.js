@@ -1,9 +1,3 @@
-//Overlap Point and pixel
-//the collisions are not checked against bounding boxes but between
-//points or image pixels
-
-//left and right keys to move the sprite
-//it's position is adjusted to another sprite's opaque pixels
 
 var triangle;
 var cloud;
@@ -14,7 +8,7 @@ function setup() {
   createCanvas(800, 400);
 
   triangle = createSprite(300, 150);
-  triangle.addAnimation('normal', 'images/person5.jpg');
+  triangle.addAnimation('normal', 'images/triangle.png');
   triangle.debug = true;
 
   cloud = createSprite(500, 150);
