@@ -1,3 +1,14 @@
+let img;
+let img1;
+let img2;
+function preload() {
+    img = loadImage('assets/startgame.jpg');
+  img1 = loadImage('assets/maingame.jpg');
+  img2 = loadImage('assets/gameover.jpg');
+}
+let gameState = 'title';
+let canvas;
+
 
 var triangle;
 var cloud;
@@ -5,8 +16,14 @@ var platform;
 var GRAVITY = 1;
 
 function setup() {
-  createCanvas(800, 400);
+  img.resize(500, 500);
+img1.resize(500, 500);
+img2.resize(500, 500);
 
+
+
+  createCanvas(800, 400);
+  canvas.parent('sketch-holder');
   triangle = createSprite(300, 150);
   triangle.addAnimation('normal', 'images/triangle.png');
   triangle.debug = true;
