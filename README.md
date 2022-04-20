@@ -5,3 +5,12 @@ Timeline:
 4/20 Code works completely as intended (start up/game functionality/end screen)
 4/24 All features/assets done
 4/26 Final touches (if any)
+
+
+Updates:
+4/17 Art assets finished
+4/19 Changed game from a wasd moving game to a choice based game (Changed files to fit.)
+-Need new art assets
+-Make more game states
+4/20
+-
