@@ -12,16 +12,23 @@ function preload() {
     "assets/screen4.jpg",
     "assets/screen5.jpg",
     "assets/screen6.jpg",
-//    "assets/screen7.jpg",
-//    "assets/screen8.jpg",
-//    "assets/screen9.jpg",
-//    "assets/screen10.jpg",
-//    "assets/screen11.jpg",
-//    "assets/screen12.jpg"
-     );
+    //    "assets/screen7.jpg",
+    //    "assets/screen8.jpg",
+    //    "assets/screen9.jpg",
+    //    "assets/screen10.jpg",
+    //    "assets/screen11.jpg",
+    //    "assets/screen12.jpg"
+  );
 
- img = loadImage('assets/screen1.jpg');
+  img = loadImage('assets/screen1.jpg');
   img1 = loadImage('assets/screen7.jpg');
+  img2 = loadImage('assets/scenario1.jpg');
+  img3 = loadImage('assets/scenario2.jpg');
+  img4 = loadImage('assets/scenario3.jpg');
+  img5 = loadImage('assets/scenario4.jpg');
+  img6 = loadImage('assets/scenario5.jpg');
+  img7 = loadImage('assets/scenario6.jpg');
+  img8 = loadImage('assets/scenario7.jpg');
 }
 
 function setup() {
@@ -40,92 +47,155 @@ function draw() {
     case "lvl1":
       stage1();
       break;
+      case "boss":
+        boss();
+        break;
     case "lvl2":
       stage2();
       break;
-      case "lvl3":
+    case "lvl3":
       stage3();
       break;
     case "lvl4":
       stage4();
       break;
+    case "lvl5":
+      stage5();
+      break;
+    case "lvl6":
+      stage6();
+      break;
+    case "lvl7":
+      stage7();
+      break;
     case "gameOver":
       gameOver();
       break;
+      case "winGame":
+        winGame();
+        break;
+        case "artistStatement":
+          artistStatement();
+          break;
   }
 }
 
 function keyReleased() {
 
-// Click A to start game
-//title
+  // Click A to start game
+  //title
   if (gameState === "title") {
     if (key === "a" || key === "A") {
       gameState = "instructions";
     }
-}
-    // Click A to finish Instructions
-    //instructions
-else if (gameState === "instructions") {
+  }
+  //Boss head explosion
+  // A or B to continue
+  else if (gameState === "boss") {
+    if (key === "a" || key === "A") {
+      gameState = "gameOver";
+    } else if (key === "b" || key === "B") {
+      gameState = "gameOver";
+    }
+  }
+  // Click A to finish Instructions
+  //instructions
+  else if (gameState === "instructions") {
     if (key === "a" || key === "A") {
       gameState = "lvl1";
     }
   }
   // Select A or B to continue to stage 2
-//stage 1
+  //stage 1
   else if (gameState === "lvl1") {
     if (key === 'a' || key === 'A') {
+      gameState = 'boss';
+    } else if (key === 'b' || key === 'B') {
       gameState = 'lvl2';
     }
-  else if (key === 'b' || key === 'B') {
-    gameState = 'lvl2';
   }
-  }
-   // Select A or B to continue to stage 3
-   //stage 2
- else if (gameState === "lvl2") {
+  // Select A or B to continue to stage 3
+  //stage 2
+  else if (gameState === "lvl2") {
     if (key === 'a' || key === 'A') {
       gameState = 'lvl3';
+    } else if (key === 'b' || key === 'B') {
+      gameState = 'boss';
     }
-else  if (key === 'b' || key === 'B') {
-     gameState = 'lvl3';
-   }
- }
+  }
 
   // Select A or B to continue to stage 4
   //stage3
- else if (gameState === "lvl3") {
+  else if (gameState === "lvl3") {
     if (key === "a" || key === "A") {
+      gameState = "boss";
+    } else if (key === "b" || key === "B") {
       gameState = "lvl4";
     }
-  else if (key === "b" || key === "B") {
-      gameState = "lvl4";
+    // Select A or B to continue to stage 5
+    //stage4
+  } else if (gameState === "lvl4") {
+    if (key === "a" || key === "A") {
+      gameState = "lvl5";
+    } else if (key === "b" || key === "B") {
+      gameState = "boss";
     }
-}
+    // Select A or B to continue to stage 6
+    //stage5
+  } else if (gameState === "lvl5") {
+    if (key === "a" || key === "A") {
+      gameState = "lvl6";
+    } else if (key === "b" || key === "B") {
+      gameState = "boss";
+    }
+    // Select A or B to continue to stage 7
+    //stage6
+  } else if (gameState === "lvl6") {
+    if (key === "a" || key === "A") {
+      gameState = "boss";
+    } else if (key === "b" || key === "B") {
+      gameState = "lvl7";
+    }
+  }
+
   // Select A or B to continue to game over
   //stage4
- else if (gameState === "lvl4") {
+  else if (gameState === "lvl7") {
     if (key === "a" || key === "A") {
-      gameState = "gameOver";
-    }
-    else if (key === "b" || key === "B") {
+      gameState = "winGame";
+    } else if (key === "b" || key === "B") {
       gameState = "gameOver";
     }
   }
   // Game Over Screen
   // Press r to restart and 1 to go to title screen
-  else if (gameState === "gameOver" ) {
-     if (key === 'r' || key === 'R') {
-       gameState = 'lvl1';
-     }
-    else if (key === '1') {
-       gameState = 'title';
-     }
-   }
+  else if (gameState === "gameOver") {
+    if (key === 'r' || key === 'R') {
+      gameState = 'lvl1';
+    } else if (key === '1') {
+      gameState = 'title';
+    }
+  }
+
+
+  else if (gameState === "winGame") {
+    if (key === 'a' || key === 'A') {
+      gameState = 'artistStatement';
+    } else if (key === '1') {
+      gameState = 'title';
+    }
+  }
+  else if (gameState === "artistStatement") {
+    if (key === 'a' || key === 'A') {
+      gameState = 'title';
+    } else if (key === '1') {
+      gameState = 'title';
+    }
+  }
 }
 
 function titleScreen() {
- animation(screens, 640, 512);
+  animation(screens, 640, 512);
   stroke(255);
   fill(255, 128, 128);
   textSize(75);
@@ -134,6 +204,19 @@ function titleScreen() {
   textSize(35);
   text('Press A To Start Game', width * 0.5, height * 0.95);
 }
+function boss() {
+  background(50,40,60);
+    textSize(25);
+    text("You have failed the boss' expectations ", width * 0.5, height * 0.1);
+    text("His head explodes", width * 0.5, height * 0.2);
+  text("A continue", 220, 990);
+  text("B continue ", 920, 990);
+  rect(200, 850, 70, 70);
+  rect(900, 850, 70, 70);
+
+}
+
+
 
 function instructionScreen() {
   background(49, 29, 224);
@@ -141,100 +224,188 @@ function instructionScreen() {
   fill(255, 128, 128);
   textSize(30);
   textAlign(CENTER);
-  text("This is the instructions",width * 0.5, height * 0.1);
+  text("This is the instructions", width * 0.5, height * 0.1);
 
-    text("You are a bus boy at *Insert your favorite Restaurant* and the boss has a big temper.",width * 0.5, height * 0.3);
-text("You are given two choices and you must choose the one ",width * 0.5, height * 0.35)
-text("that you think will not make your boss angry to keep your job.",width * 0.5, height * 0.4)
-text("If you make him angry, you lose a heart. Lose 3 hearts and you are fired" ,width * 0.5, height * 0.45)
-text("Press A to go to work" ,width * 0.5, height * 0.8)
+  text("You are a bus boy at *Insert your favorite Restaurant* and the boss has a big temper.", width * 0.5, height * 0.3);
+  text("You are given two choices and you must choose the one ", width * 0.5, height * 0.35)
+  text("that you think will not make your boss angry to keep your job.", width * 0.5, height * 0.4)
+  text("If you make him angry, his head will explode and you will lose your job", width * 0.5, height * 0.45)
+  text("Press A to go to work", width * 0.5, height * 0.8)
 
 }
 
 function stage1() {
   background(232, 19, 211);
-  fill(255, 128, 128);
+  image(img2, 0, 0);
+  fill(0);
   textSize(50);
   textAlign(CENTER);
-  text("You have just started your shift", width * 0.5, height * 0.1);
-  text("This is stage 1", width * 0.5, height * 0.2);
-text("What do you do", width * 0.5, height * 0.3);
+  text("You have just started your shift", width * 0.7, height * 0.1);
+  text("What do you do", width * 0.7, height * 0.2);
   textSize(25);
   textAlign(CENTER);
   noStroke();
-  text("A play on your phone", 220, 890);
-  text("B start working", 920, 890);
-  rect(200, 750, 70, 70);
-  rect(900, 750, 70, 70);
+  text("A play on your phone", 220, 990);
+  text("B start working", 920, 990);
+  rect(200, 850, 70, 70);
+  rect(900, 850, 70, 70);
 
 }
 
 function stage2() {
   background(255, 247, 189);
-  fill(255, 128, 128);
+  image(img3, 0, 0);
+  fill(0);
   textSize(50);
   textAlign(CENTER);
-  text("The boss walks in", width * 0.5, height * 0.1);
-  text("This is stage 2", width * 0.5, height * 0.2);
-text("What do you do", width * 0.5, height * 0.3);
+  text("You drop and break a wine glass", width * 0.5, height * 0.1);
+  text("What do you do", width * 0.5, height * 0.2);
   textSize(25);
   textAlign(CENTER);
   noStroke();
-  text("A keep playing on your phone", 220, 890);
-  text("B Look busy ", 920, 890);
-  rect(200, 750, 70, 70);
-  rect(900, 750, 70, 70);
+  text("Clean it up", 220, 990);
+  text("Ignore it ", 920, 990);
+  rect(200, 850, 70, 70);
+  rect(900, 850, 70, 70);
 }
 
-function stage3 () {
+function stage3() {
   background(232, 19, 211);
-  fill(255, 128, 128);
+  image(img4, 0, 0);
+  fill(0);
   textSize(50);
   textAlign(CENTER);
-  text("Its lunchtime", width * 0.5, height * 0.1);
-  text("This is stage 3", width * 0.5, height * 0.2);
-text("What do you do", width * 0.5, height * 0.3);
+  text("A customer drops their wallet", width * 0.3, height * 0.1);
+  text("What do you do", width * 0.3, height * 0.2);
   textSize(25);
   textAlign(CENTER);
   noStroke();
-  text("A play on your phone", 220, 890);
-  text("B eat lunch", 920, 890);
-  rect(200, 750, 70, 70);
-  rect(900, 750, 70, 70);
+  text("Pocket it ez money", 220, 990);
+  text("Return it", 920, 990);
+  rect(200, 850, 70, 70);
+  rect(900, 850, 70, 70);
 }
 
-function stage4 () {
+function stage4() {
   background(255, 247, 189);
-  fill(255, 128, 128);
+    image(img5, 0, 0);
+  fill(0);
   textSize(50);
   textAlign(CENTER);
-  text("Customer gets angry at you", width * 0.5, height * 0.1);
-  text("This is stage 4", width * 0.5, height * 0.2);
-text("What do you do", width * 0.5, height * 0.3);
+  text("Its breaktime", width * 0.5, height * 0.1);
+  text("What do you do", width * 0.5, height * 0.2);
   textSize(25);
   textAlign(CENTER);
   noStroke();
-  text("A get angry back", 220, 890);
-  text("B calm them down", 920, 890);
-  rect(200, 750, 70, 70);
-  rect(900, 750, 70, 70);
+  text("Eat ", 220, 990);
+  text("Keep working", 920, 990);
+  rect(200, 850, 70, 70);
+  rect(900, 850, 70, 70);
 }
+
+function stage5() {
+  background(255, 247, 189);
+    image(img6, 0, 0);
+  fill(0);
+  textSize(50);
+  textAlign(CENTER);
+  text("The manager wants you", width * 0.4, height * 0.2);
+    text(" to restock stuff", width * 0.4, height * 0.3);
+  text("What do you do", width * 0.4, height * 0.4);
+  textSize(25);
+  textAlign(CENTER);
+  noStroke();
+  text("Restock normally", 220, 990);
+  text("Relax in restock room then restock normally", 920, 990);
+  rect(200, 850, 70, 70);
+  rect(900, 850, 70, 70);
+}
+
+function stage6() {
+  background(255, 247, 189);
+    image(img7, 0, 0);
+  fill(0);
+  textSize(50);
+  textAlign(CENTER);
+  text("Boss leaves you in charge temporarily", width * 0.5, height * 0.2);
+  text("What do you do", width * 0.5, height * 0.3);
+  textSize(25);
+  textAlign(CENTER);
+  noStroke();
+  text("Sleep in manager's office", 220, 990);
+  text("Work normally", 920, 990);
+  rect(200, 850, 70, 70);
+  rect(900, 850, 70, 70);
+}
+
+function stage7() {
+  background(255, 247, 189);
+    image(img8, 0, 0);
+  fill(0);
+  textSize(50);
+  textAlign(CENTER);
+  text("Customer complains about bad food ", width * 0.5, height * 0.1);
+  text("What do you do", width * 0.5, height * 0.2);
+  textSize(25);
+  textAlign(CENTER);
+  noStroke();
+  text("Tell manager", 220, 990);
+  text("Tell them to deal with it", 920, 990);
+  rect(200, 850, 70, 70);
+  rect(900, 850, 70, 70);
+}
+
 function gameOver() {
   background(232, 19, 211);
   image(img1, 0, 0);
   fill(255, 128, 128);
   textSize(50);
   textAlign(CENTER);
-//  text("The boss fires you for making him very angry", width * 0.5, height * 0.1);
-//  text("This is GameOver", width * 0.5, height * 0.2);
-// text("What do you do", width * 0.5, height * 0.3);
+  //  text("The boss fires you for making him very angry", width * 0.5, height * 0.1);
+  //  text("This is GameOver", width * 0.5, height * 0.2);
+  // text("What do you do", width * 0.5, height * 0.3);
   textSize(25);
   textAlign(CENTER);
   noStroke();
-//  text("Go home crying", 220, 890);
-//  text("Cry at work", 920, 890);
-//  rect(200, 750, 70, 70);
-//  rect(900, 750, 70, 70);
+  //  text("Go home crying", 220, 890);
+  //  text("Cry at work", 920, 890);
+  //  rect(200, 750, 70, 70);
+  //  rect(900, 750, 70, 70);
   text("Press R to restart", width * 0.5, height * 0.9);
   text("Press 1 to go to title page", width * 0.5, height * 0.95);
+}
+function winGame() {
+  background(232, 19, 211);
+  image(img1, 0, 0);
+  fill(255, 128, 128);
+  textSize(50);
+  textAlign(CENTER);
+  //  text("The boss fires you for making him very angry", width * 0.5, height * 0.1);
+  //  text("This is GameOver", width * 0.5, height * 0.2);
+  // text("What do you do", width * 0.5, height * 0.3);
+  textSize(25);
+  textAlign(CENTER);
+  noStroke();
+  //  text("Go home crying", 220, 890);
+  //  text("Cry at work", 920, 890);
+  //  rect(200, 750, 70, 70);
+  //  rect(900, 750, 70, 70);
+  text("Press A to go to Artist Statement", width * 0.5, height * 0.9);
+  text("Press 1 to go to title page", width * 0.5, height * 0.95);
+}
+function artistStatement() {
+  background(255, 247, 189);
+  fill(0);
+  textSize(50);
+  textAlign(CENTER);
+  text("This is the artist Statement ", width * 0.5, height * 0.1);
+  text("Inprogress", width * 0.5, height * 0.2);
+  text("What do you do", width * 0.5, height * 0.3);
+  textSize(25);
+  textAlign(CENTER);
+  noStroke();
+  text("Press A or 1 to play again", 220, 990);
+  text("WootWoot", 920, 990);
+  rect(200, 850, 70, 70);
+  rect(900, 850, 70, 70);
 }
